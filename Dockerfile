@@ -3,6 +3,7 @@ MAINTAINER youngsouk <young34844@naver.com>
 
 ENV LC_CTYPE C.UTF-8
 RUN apt upgrade && apt update
+RUN apt-get update && apt-get install -y netcat
 
 RUN apt install python python-pip git curl wget vim zsh gdb python3 python3-pip  -y
 RUN pip3 install unicorn
