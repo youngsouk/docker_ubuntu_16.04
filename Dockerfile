@@ -13,8 +13,13 @@ RUN pip3 install capstone ropper
 RUN pip install pwntools
 
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+
+RUN mkdir -p "$HOME/.zsh"
+RUN git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+RUN fpath+=("$HOME/.zsh/pure")
+RUN echo "autoload -U promptinit; promptinit\nprompt pure" >> ~/.zshrc
+
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-#RUN echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 RUN echo "source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
